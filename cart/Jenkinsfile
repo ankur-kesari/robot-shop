@@ -14,11 +14,11 @@ pipeline {
                 }
         }
         
-        stage('Docker Build and Tagging'){
+        stage('Docker Build'){
             steps{
           
                 sh  'docker build -t cart/robot-shop cart/'
-                sh 'docker tag cart/robot-shop ${reg_address}/${repo}:cart-build'
+                sh 'docker tag cart/robot-shop ${ecr_reg_address}/${repo}:cart-build'
                  }
         }
         stage('ECR Authentication'){
@@ -29,7 +29,7 @@ pipeline {
         
         stage('Docker Push'){
                  steps{
-                     sh 'docker push ${reg_address}/${repo}:cart-build'
+                     sh 'docker push ${ecr_reg_address}/${repo}:cart-build'
             
                     }
         }
