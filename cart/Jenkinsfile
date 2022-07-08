@@ -23,7 +23,8 @@ pipeline {
         }
         stage('ECR Authentication'){
                 steps{
-                 sh 'aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 421320058418.dkr.ecr.us-west-2.amazonaws.com'
+                 sh 'sudo chmod 777 /var/run/docker.sock'   
+                 sh 'sudo aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 421320058418.dkr.ecr.us-west-2.amazonaws.com'
                   }
         }
         
