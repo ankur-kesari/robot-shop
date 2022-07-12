@@ -9,6 +9,9 @@ ENV MYSQL_ALLOW_EMPTY_PASSWORD=yes \
 
 # change datadir entry in /etc/mysql/my.cnf
 COPY config.sh /root/
+RUN chmod +x /root/config.sh     # updated permission for config.sh
+RUN /root/config.sh
+
 RUN /root/config.sh
 
 COPY scripts/* /docker-entrypoint-initdb.d/
